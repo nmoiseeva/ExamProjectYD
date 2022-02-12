@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPageWithHeaderMenu {
 
-    HomePage homePage = new HomePage(webDriver);
-
     @FindBy(xpath = "//input[@id = 'login_email']")
     private WebElement emailFieldPopUp;
     @FindBy(xpath = "//input[@id = 'login_password']")
@@ -26,6 +24,7 @@ public class LoginPage extends ParentPageWithHeaderMenu {
     }
 
     public void successLogin() {
+        HomePage homePage = new HomePage(webDriver);
         homePage.openHomePage();
         openLoginPopUp();
         enterTextToElement(emailFieldPopUp, TestData.VALID_LOGIN);

@@ -17,7 +17,7 @@ public class HomePage extends ParentPage {
         try {
             webDriver.get(baseUrl + "/");
             checkUrl();
-            closeCookies();
+            closeCookiesPopUp();
             logger.info("Home Page was opened");
         } catch (Exception e) {
             logger.error("Can not open Home Page " + e);

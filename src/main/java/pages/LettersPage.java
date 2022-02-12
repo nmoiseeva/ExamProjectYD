@@ -9,9 +9,6 @@ import java.util.List;
 
 public class LettersPage extends ParentPageWithHeaderMenu {
 
-    LoginPage loginPage = new LoginPage(webDriver);
-    MyAccountPage myAccountPage = new MyAccountPage(webDriver);
-
     @FindBy(css = "div.filter-icon-button")
     private WebElement searchButton;
     @FindBy(css = "input#c_id")
@@ -53,13 +50,15 @@ public class LettersPage extends ParentPageWithHeaderMenu {
     }
 
     public void openLettersPage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        MyAccountPage myAccountPage = new MyAccountPage(webDriver);
         loginPage.successLogin();
         myAccountPage.checkMyProfileIsOpen();
         myAccountPage.openLettersPage();
     }
 
     public void checkIsLettersPageOpen() {
-        isElementDisplayed(searchButton);
+        Assert.assertTrue(isElementDisplayed(searchButton));
         getRelativeUrl();
     }
 
@@ -84,7 +83,7 @@ public class LettersPage extends ParentPageWithHeaderMenu {
     }
 
     public void checkIsFilteredLetterCorrect() {
-        isElementDisplayed(expectedLetterFrom1030819);
+        Assert.assertTrue(isElementDisplayed(expectedLetterFrom1030819));
         Assert.assertEquals("Number of letters is " + listOfLetters.size(), 1, listOfLetters.size());
     }
 
@@ -106,7 +105,7 @@ public class LettersPage extends ParentPageWithHeaderMenu {
         checkTextFromElement(text, infoBlock);
         Assert.assertEquals("Number of letters is " + listOfLetters.size(), 1, listOfLetters.size());
         clickOnElement(recycleBinFolderLink);
-        isElementDisplayed(expectedMessageFrom234027);
+        Assert.assertTrue(isElementDisplayed(expectedMessageFrom234027));
     }
 
     public void recoverLetterFromBin() {
@@ -120,6 +119,6 @@ public class LettersPage extends ParentPageWithHeaderMenu {
         openSearchLettersMenu();
         enterIdForSearch("234027");
         clickSearchButtonAtSearchMenu();
-        isElementDisplayed(expectedMessageFrom234027);
+        Assert.assertTrue(isElementDisplayed(expectedMessageFrom234027));
     }
 }

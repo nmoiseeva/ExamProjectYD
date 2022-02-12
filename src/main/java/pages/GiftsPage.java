@@ -1,16 +1,13 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class GiftsPage extends ParentPageWithHeaderMenu {
 
-    LoginPage loginPage = new LoginPage(webDriver);
-    MyAccountPage myAccountPage = new MyAccountPage(webDriver);
-    GirlsProfilePage girlsProfilePage = new GirlsProfilePage(webDriver);
-    SearchPage searchPage = new SearchPage(webDriver);
-    ViewMatchesPage viewMatchesPage = new ViewMatchesPage(webDriver);
+
 
     @FindBy(xpath = "//a[contains(text(),'Tasty Gifts')]")
     private WebElement tastyGiftTab;
@@ -31,6 +28,11 @@ public class GiftsPage extends ParentPageWithHeaderMenu {
     }
 
     public void openGiftsPage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        MyAccountPage myAccountPage = new MyAccountPage(webDriver);
+        GirlsProfilePage girlsProfilePage = new GirlsProfilePage(webDriver);
+        SearchPage searchPage = new SearchPage(webDriver);
+        ViewMatchesPage viewMatchesPage = new ViewMatchesPage(webDriver);
         loginPage.successLogin();
         myAccountPage.checkMyProfileIsOpen();
         openSearchPage();
@@ -44,7 +46,7 @@ public class GiftsPage extends ParentPageWithHeaderMenu {
 
     public void checkIsGiftsPageOpen() {
         checkUrlWithPattern();
-        isElementDisplayed(tastyGiftTab);
+        Assert.assertTrue(isElementDisplayed(tastyGiftTab));
     }
 
     public void chooseGiftTab() {
@@ -57,7 +59,7 @@ public class GiftsPage extends ParentPageWithHeaderMenu {
 
     public void checkGiftErrorMessage(String text) {
         checkTextContainAtElement(text, notEnoughCreditsPopUp);
-        isElementDisplayed(addCreditButton);
+        Assert.assertTrue(isElementDisplayed(addCreditButton));
     }
 
 }

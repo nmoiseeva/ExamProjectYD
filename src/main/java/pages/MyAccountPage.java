@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,8 +24,8 @@ public class MyAccountPage extends ParentPageWithHeaderMenu {
     }
 
     public void checkMyProfileIsOpen() {
-        closeCookies();
-        isElementDisplayed(imageUsers);
+        closeCookiesPopUp();
+        Assert.assertTrue(isElementDisplayed(imageUsers));
         checkUrl();
     }
 

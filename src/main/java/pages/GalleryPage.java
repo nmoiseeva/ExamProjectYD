@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,7 +28,7 @@ public class GalleryPage extends ParentPageWithHeaderMenu {
 
     public void checkIsGalleryPageOpen() {
         checkUrl();
-        isElementDisplayed(girName);
+        Assert.assertTrue(isElementDisplayed(girName));
     }
 
     public void chooseFavoriteCard() {
@@ -35,7 +36,7 @@ public class GalleryPage extends ParentPageWithHeaderMenu {
     }
 
     public void checkIsDeleteFromFavoriteIconPresent() {
-        isElementDisplayed(deleteFromFavoritesIcon);
+        Assert.assertTrue(isElementDisplayed(deleteFromFavoritesIcon));
     }
 
     public void clickOnFavoriteTab() {

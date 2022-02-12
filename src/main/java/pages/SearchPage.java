@@ -1,13 +1,11 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class SearchPage extends ParentPageWithHeaderMenu {
-
-    HomePage homePage = new HomePage(webDriver);
-    ViewMatchesPage viewMatchesPage = new ViewMatchesPage(webDriver);
 
     @FindBy(xpath = "//div[@class='jq-selectbox__trigger']")
     private WebElement onlineNowDropDownMenu;
@@ -65,15 +63,16 @@ public class SearchPage extends ParentPageWithHeaderMenu {
     }
 
     public void checkIsSearchPageOpen() {
-        isElementDisplayed(showMatchesButton);
+        Assert.assertTrue(isElementDisplayed(showMatchesButton));
         checkUrlWithPattern();
     }
 
     public void guestOpenSearchPage() {
+        HomePage homePage = new HomePage(webDriver);
         homePage.openHomePage();
         openSearchPage();
         getRelativeUrl();
-        isElementDisplayed(showMatchesButton);
+        Assert.assertTrue(isElementDisplayed(showMatchesButton));
     }
 
     public void chooseOptionAtDropDownOnlineNow(String option) {
@@ -107,6 +106,7 @@ public class SearchPage extends ParentPageWithHeaderMenu {
     }
 
     public void clickAtSearchButtonAndCheckResult() {
+        ViewMatchesPage viewMatchesPage = new ViewMatchesPage(webDriver);
         clickOnElement(showMatchesButton);
         viewMatchesPage.checkSearchResult();
     }

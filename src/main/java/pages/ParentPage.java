@@ -47,7 +47,7 @@ abstract public class ParentPage {
                 containsString(baseUrl + getRelativeUrl()));
     }
 
-    protected void closeCookies() {
+    protected void closeCookiesPopUp() {
         try {
             if (new WebDriverWait(webDriver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.className("popup_plugin_info-accept-cookies__text"))).isDisplayed()) {
                 webDriver.findElement(By.className("popup_plugin_info-accept-cookies__text")).click();

@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +21,7 @@ public class GirlsProfilePage extends ParentPageWithHeaderMenu{
 
     public void checkIsGirlsProfileOpen(){
         checkUrlWithPattern();
-        isElementDisplayed(sendFlowersOrGiftButton);
+        Assert.assertTrue(isElementDisplayed(sendFlowersOrGiftButton));
     }
 
     public void clickOnSendGiftButton(){

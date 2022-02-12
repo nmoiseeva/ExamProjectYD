@@ -1,7 +1,6 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,8 +9,6 @@ import java.util.List;
 
 public class FavoritePage extends ParentPageWithHeaderMenu {
 
-    LoginPage loginPage = new LoginPage(webDriver);
-    MyAccountPage myAccountPage = new MyAccountPage(webDriver);
     GalleryPage galleryPage = new GalleryPage(webDriver);
 
     @FindBy(xpath = "//div[@class='dte-l-catalogItem']")
@@ -39,6 +36,8 @@ public class FavoritePage extends ParentPageWithHeaderMenu {
     }
 
     public void checkIsFavoritesPageEmpty() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        MyAccountPage myAccountPage = new MyAccountPage(webDriver);
         loginPage.successLogin();
         myAccountPage.checkMyProfileIsOpen();
         myAccountPage.openFavoritesPage();
@@ -48,11 +47,9 @@ public class FavoritePage extends ParentPageWithHeaderMenu {
 
     public void deleteAllCards() {
         if (isElementDisplayed(deleteFromFavoritesIcon)) {
-            List<WebElement> cardsForDeleteList = webDriver.findElements(By.xpath("//div[@class='favorite active']"));
-            while (!cardsForDeleteList.isEmpty()) {
+            while (!galleryCards.isEmpty()) {
                 clickOnElement(deleteFromFavoritesIcon);
                 webDriver.navigate().refresh();
-                cardsForDeleteList = webDriver.findElements(By.xpath("//div[@class='favorite active']"));
                 logger.info("All cards were deleted");
             }
         } else if (isElementDisplayed(noCardsInfoBlock)) {
